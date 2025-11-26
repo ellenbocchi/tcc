@@ -1,0 +1,78 @@
+ (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
+diff --git a/analysis/run_att_gt.R b/analysis/run_att_gt.R
+new file mode 100644
+index 0000000000000000000000000000000000000000..b27e284706296bd78601c99d78ada2761c1f4edf
+--- /dev/null
++++ b/analysis/run_att_gt.R
+@@ -0,0 +1,68 @@
++# Script to regenerate a large panel dataset and run att_gt
++# The script simulates a panel where a share of units are never treated
++# so "not-yet-treated" observations are present at every time period.
++
++if (!requireNamespace("did", quietly = TRUE)) {
++  install.packages("did", repos = "https://cloud.r-project.org")
++}
++
++library(did)
++
++set.seed(123)
++
++time_points <- 1:10
++periods <- length(time_points)
++
++# Target total rows for the panel (increase to 500000 if desired)
++target_rows <- 200000
++unit_count <- ceiling(target_rows / periods)
++
++# Assign treatment cohorts; a subset are never treated (cohort = Inf)
++cohorts <- sample(c(time_points, Inf), size = unit_count, replace = TRUE,
++                  prob = c(rep(1, periods - 2), 3, 3, 5))
++
++Pme <- data.frame(
++  id = rep(seq_len(unit_count), each = periods),
++  time_c = rep(time_points, times = unit_count)
++)
++Pme$gname_numeric <- rep(cohorts, each = periods)
++
++# Label version used for the balance table
++Pme$gname_IMP1 <- ifelse(is.finite(Pme$gname_numeric),
++                        paste0("treated_", Pme$gname_numeric),
++                        "not-yet-treated")
++
++# Simulate outcomes with a treatment effect after adoption
++treatment_effect <- 2
++base_outcome <- rnorm(nrow(Pme))
++Pme$y <- base_outcome + ifelse(Pme$time_c >= Pme$gname_numeric,
++                               treatment_effect,
++                               0)
++
++# Expand/trim to the desired number of rows
++Pme_full <- Pme[seq_len(target_rows), ]
++
++cat(sprintf("Constructed Pme_full with %s rows across %s periods.\n",
++            nrow(Pme_full), periods))
++
++# Check that not-yet-treated units appear in every period
++cat("\nCross-tab of period by gname_IMP1:\n")
++print(table(Pme_full$time_c, Pme_full$gname_IMP1))
++
++# Run the att_gt estimator using the numeric cohort variable
++att <- att_gt(
++  yname = "y",
++  tname = "time_c",
++  idname = "id",
++  gname = "gname_numeric",
++  data = Pme_full,
++  control_group = "notyettreated"
++)
++
++cat("\nATT summary:\n")
++print(summary(att))
++
++cat("\nHow to read this output:\n")
++cat("- Overall ATT: average effect across cohorts/periods; positive values mean treatment raises outcomes by roughly that amount.\n")
++cat("- Dynamic ATT: effects by event time; '*' indicates the 95% confidence band excludes zero (statistically significant).\n")
++cat("- Group-Time ATT: cohort- and period-specific effects; the same '*' significance rule applies.\n")
+ 
+EOF
+)
