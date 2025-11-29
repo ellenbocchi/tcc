@@ -1,0 +1,83 @@
+############################################################
+# ESTRUTURA SUGERIDA — SEÇÃO 1 DO TCC
+# (Introdução + Sub-seções)
+# Arquivo preparado para orientação de escrita
+############################################################
+
+
+------------------------------------------------------------
+1. INTRODUÇÃO
+------------------------------------------------------------
+
+Nesta seção, apresentar:
+
+- O problema econômico: níveis persistentes de informalidade no Brasil.
+- O contexto regulatório que antecede o MEI.
+- A relevância da formalização para produtividade, arrecadação e inclusão social.
+- As dificuldades de identificar causalidade em políticas de formalização.
+- A oportunidade metodológica criada pela implementação escalonada do MEI.
+- Escopo geral da pesquisa (sem detalhes técnicos).
+
+Nada de equações, nada de modelo. Apenas motivação clara.
+
+
+------------------------------------------------------------
+1.1 CONTEXTO INSTITUCIONAL: INFORMALIDADE E O MEI
+------------------------------------------------------------
+
+Esta subseção deve apresentar:
+
+- A informalidade como uma distorção estrutural do mercado de trabalho brasileiro.
+- Custos fixos e contínuos associados à formalização.
+- O desenho institucional do MEI:
+    * IMP1 (redução de custos fixos, introdução do regime simplificado);
+    * IMP2 (redução dos custos contínuos a partir de 2011).
+- A implementação escalonada do IMP1 entre regiões.
+- O choque nacional simultâneo do IMP2.
+- Por que o MEI constitui um caso ideal para avaliação causal:
+    * heterogeneidade temporal;
+    * heterogeneidade regional;
+    * alteração institucional exógena.
+
+
+------------------------------------------------------------
+1.2 LACUNA NA LITERATURA
+------------------------------------------------------------
+
+Apresentar de forma clara:
+
+- O que a literatura já sabe sobre políticas de formalização no Brasil.
+- Como estudos existentes tratam custos fixos e custos contínuos.
+- Limitações:
+    * pouca atenção à heterogeneidade por escolaridade;
+    * poucos estudos usando dados administrativos setoriais no nível setor–região–tempo;
+    * lacunas sobre mecanismos (elasticidade da formalização a impostos).
+- Como sua dissertação contribui, destacando:
+    * separação entre IMP1 e IMP2;
+    * exploração da adoção escalonada;
+    * abordagem causal baseada em diferenças-em-diferenças com adoção em múltiplos períodos;
+    * quantificação explícita do canal da escolaridade.
+
+
+------------------------------------------------------------
+1.3 PERGUNTA DE PESQUISA E CONTRIBUIÇÕES
+------------------------------------------------------------
+
+Perguntas de pesquisa:
+
+1. Qual é o efeito causal do MEI (IMP1 + IMP2) sobre a formalização individual em setores elegíveis?
+2. Como esse efeito varia com o nível médio de escolaridade dos trabalhadores nos setores?
+
+Contribuições principais:
+
+- Estimar separadamente o efeito de IMP1 (redução de custos fixos) e o efeito adicional de IMP2 (redução dos custos contínuos).
+- Explorar variação temporal e regional decorrente da adoção escalonada — staggered treatment.
+- Aplicar um modelo de diferenças-em-diferenças em estrutura setor–região–tempo (triple DiD).
+- Testar o mecanismo da escolaridade: maior elasticidade de resposta entre segmentos mais educados.
+- Fornecer evidências inéditas usando RAIS em painel estruturado por setor e região.
+
+
+############################################################
+# FIM DO ARQUIVO
+############################################################
+
